@@ -182,12 +182,12 @@ function getMasterServers() {
 				error: function() {
 					console.error("Issue connecting to master server: " + val['list']);
 					checked++;
-					if (checked == masters) {
-						getServers(false);
+					// if (checked == masters) {
+						// getServers(false);
 						// getTotalPlayers();
 						// totalPlayersLoop();
 						// getCurrentVersion();
-					}
+					// }
 				}
 			});
 		});
@@ -1050,7 +1050,7 @@ function loadServers() {
 			$('#refresh img').removeClass('rotating');
 		}, 4000);
 		$('#browser').empty();
-		getServers(true);
+		// getServers(true);
 		$('.server').hover(function() {
 			$('#click')[0].currentTime = 0;
 			$('#click')[0].play();
