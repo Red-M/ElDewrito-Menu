@@ -1147,16 +1147,16 @@ function directConnect() {
 }
 
 function getCurrentVersion() {
-	$.getJSON("http://tracks.thefeeltra.in/update", function(data) {
-		console.log(data);
-	});
+	// $.getJSON("http://tracks.thefeeltra.in/update", function(data) {
+		// console.log(data);
+	// });
 }
 
 var infoIP = "http://158.69.166.144:8081",
 	totallyLoopingPlayers = setInterval(totalPlayersLoop,10000);
 
 function totalPlayersLoop() {
-	$.getJSON(infoIP+"/all", function(data) {
+/* 	$.getJSON(infoIP+"/all", function(data) {
 		serverz = data;
 		for (var i = 0; i < serverz.servers.length; i++) {
 			//if (!dewRconConnected) {
@@ -1176,13 +1176,13 @@ function totalPlayersLoop() {
 						}
 					});
 				})(i);
-			/*} else {
+			} else {
 				dewRcon.send('Server.Ping "' + serverz.servers[i].address.split(':')[0] + '', function(res) {
 					console.log(res);
 				});
 					//console.log(i);
 					//serverz.servers[i].ping = dewRcon.lastMessage.split(' ')[2];
-			}*/
+			}
 		}
 		$('#players-online').text(serverz.count);
 		loadParty();
@@ -1193,7 +1193,7 @@ function totalPlayersLoop() {
 		infoIP = (infoIP == "http://158.69.166.144:8081" ? "http://servers.thefeeltra.in" : "http://158.69.166.144:8081");
 		console.log("Switched to "+infoIP+".");
 		totalPlayersLoop();
-	});
+	}); */
 }
 
 function playersJoin(number, max, time, ip) {
