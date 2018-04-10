@@ -202,13 +202,12 @@ function getServers(browser) {
 	gp_servers = 0;
 	gp_on = 0;
 	for (var i = 0; i < serverz.servers.length; i++) {
+        var startTime = Date.now(),
+        endTime;
         $.getJSON('http://'+serverz.servers[i]+'/', function(data) {
             server_data = data;
-            if (typeof serverz.servers[i] != 'undefined') {
-                if (typeof serverz.servers[i].ping != 'undefined') {
-                    server_data.ping = serverz.servers[i].ping;
-                }
-            }
+            endTime = Date.now();
+            server_data.ping = Math.round((endTime - startTime) * 0.45);
             queryServer(server_data, i, browser);
         });
 	}
