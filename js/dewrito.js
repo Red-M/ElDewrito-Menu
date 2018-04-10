@@ -1157,7 +1157,7 @@ var infoIP = "http://158.69.166.144:8081",
 
 function totalPlayersLoop() {
  	$.getJSON("http://eldewrito.red-m.net/list", function(data) {
-		serverz = data['result']['servers'];
+		serverz = data['result'];
 		for (var i = 0; i < serverz.servers.length; i++) {
 			// if (!dewRconConnected) {
 				var startTime = Date.now(),
