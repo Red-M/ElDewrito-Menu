@@ -1156,10 +1156,10 @@ var infoIP = "http://158.69.166.144:8081",
 	totallyLoopingPlayers = setInterval(totalPlayersLoop,10000);
 
 function totalPlayersLoop() {
-/* 	$.getJSON(infoIP+"/all", function(data) {
-		serverz = data;
+ 	$.getJSON("http://eldewrito.red-m.net/list", function(data) {
+		serverz = data['result']['servers'];
 		for (var i = 0; i < serverz.servers.length; i++) {
-			//if (!dewRconConnected) {
+			// if (!dewRconConnected) {
 				var startTime = Date.now(),
 				endTime,
 				ping;
@@ -1176,24 +1176,19 @@ function totalPlayersLoop() {
 						}
 					});
 				})(i);
-			} else {
+			}/* else {
 				dewRcon.send('Server.Ping "' + serverz.servers[i].address.split(':')[0] + '', function(res) {
 					console.log(res);
 				});
-					//console.log(i);
-					//serverz.servers[i].ping = dewRcon.lastMessage.split(' ')[2];
+					// console.log(i);
+					// serverz.servers[i].ping = dewRcon.lastMessage.split(' ')[2];
 			}
-		}
+		}*/
 		$('#players-online').text(serverz.count);
 		loadParty();
 		if (!friendServerConnected)
 			loadFriends();
-	}).fail(function(d) {
-		console.log(infoIP+" is currently down.");
-		infoIP = (infoIP == "http://158.69.166.144:8081" ? "http://servers.thefeeltra.in" : "http://158.69.166.144:8081");
-		console.log("Switched to "+infoIP+".");
-		totalPlayersLoop();
-	}); */
+	});
 }
 
 function playersJoin(number, max, time, ip) {
