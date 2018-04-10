@@ -1166,7 +1166,7 @@ function totalPlayersLoop() {
 				(function(i) {
 					$.ajax({
 						type: "GET",
-						url: "http://" + serverz.servers[i].address + "/",
+						url: "http://" + serverz.servers[i] + "/",
 						async: true,
 						success: function() {
 							endTime = Date.now();
