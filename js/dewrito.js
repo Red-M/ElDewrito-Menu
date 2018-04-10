@@ -202,7 +202,10 @@ function getServers(browser) {
 	gp_servers = 0;
 	gp_on = 0;
 	for (var i = 0; i < serverz.servers.length; i++) {
-		queryServer(serverz.servers[i], i, browser);
+        $.getJSON('http://'+serverz.servers[i]+'/', function(data) {
+            server_data = data;
+        });
+		queryServer(server_data, i, browser);
 	}
 }
 
@@ -709,14 +712,14 @@ function removeFriend(name) {
 }
 
 function isOnlineServer(friend) {
-	return typeof serverz.players[friend.contains(":0x") ? friend.split(':')[0] : friend] != 'undefined'; //Orion, check if friend is online or not here
+	// return typeof serverz.players[friend.contains(":0x") ? friend.split(':')[0] : friend] != 'undefined'; //Orion, check if friend is online or not here
 }
 
 function isOnline(friend) {
-	for (var i = 0; i < onlinePlayers.length; i++) {
-		if ((friend.contains(":0x") && (onlinePlayers[i].split(':')[1] == friend.split(':')[1])) | onlinePlayers[i].split(':')[0] == friend || (typeof serverz.players[friend.contains(":0x") ? friend.split(':')[0] : friend] != 'undefined'))
-			return true;
-	}
+	// for (var i = 0; i < onlinePlayers.length; i++) {
+		// if ((friend.contains(":0x") && (onlinePlayers[i].split(':')[1] == friend.split(':')[1])) | onlinePlayers[i].split(':')[0] == friend || (typeof serverz.players[friend.contains(":0x") ? friend.split(':')[0] : friend] != 'undefined'))
+			// return true;
+	// }
 	return false; //Orion, check if friend is online or not here
 }
 
