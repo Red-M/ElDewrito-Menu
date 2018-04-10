@@ -214,7 +214,7 @@ function queryServer(serverInfo, i, browser) {
 	}
 	var isPassworded = serverInfo.passworded !== undefined;
 		servers[i] = {
-			"address": sanitizeString(serverInfo),
+			"address": sanitizeString(serverInfo.address),
 			"host": sanitizeString(serverInfo.hostPlayer),
 			"name": sanitizeString(serverInfo.name),
 			"variant": sanitizeString(serverInfo.variant),
@@ -1136,9 +1136,9 @@ function lobbyLoop(ip) {
 }
 
 function getTotalPlayers() {
-	$.getJSON(infoIP+"/count", function(data) {
-		$('#players-online').text(data.result);
-	});
+	// $.getJSON(infoIP+"/count", function(data) {
+		// $('#players-online').text(data.result);
+	// });
 }
 
 function directConnect() {
