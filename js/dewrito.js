@@ -204,8 +204,10 @@ function getServers(browser) {
 	for (var i = 0; i < serverz.servers.length; i++) {
         $.getJSON('http://'+serverz.servers[i]+'/', function(data) {
             server_data = data;
-            if (typeof serverz.servers[i].ping != 'undefined') {
-                server_data.ping = serverz.servers[i].ping;
+            if (typeof serverz.servers[i] != 'undefined') {
+                if (typeof serverz.servers[i].ping != 'undefined') {
+                    server_data.ping = serverz.servers[i].ping;
+                }
             }
             queryServer(server_data, i, browser);
         });
