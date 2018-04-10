@@ -214,7 +214,7 @@ function queryServer(serverInfo, i, browser) {
 	}
 	var isPassworded = serverInfo.passworded !== undefined;
 		servers[i] = {
-			"address": sanitizeString(serverInfo.address),
+			"address": sanitizeString(serverInfo),
 			"host": sanitizeString(serverInfo.hostPlayer),
 			"name": sanitizeString(serverInfo.name),
 			"variant": sanitizeString(serverInfo.variant),
@@ -490,9 +490,9 @@ function quickJoin() {
 			}
 		}
 		if (i == serverz.servers.length - 1) {
-			jumpToServer(currentServer.address);
+			jumpToServer(currentServer);
 			setTimeout(function() {
-				startgame(currentServer.address, 'JOIN GAME'.split(' '), "");
+				startgame(currentServer, 'JOIN GAME'.split(' '), "");
 			}, 500);
 		}
 	}
@@ -501,7 +501,7 @@ function quickJoin() {
 function jumpToServer(ip) {
 		var d;
 		for (var i = 0; i < serverz.servers.length; i++) {
-			if (serverz.servers[i].address == ip)
+			if (serverz.servers[i] == ip)
 				d = serverz.servers[i];
 		}
 		host = 0;
@@ -532,11 +532,11 @@ function jumpToServer(ip) {
 		$('#friends-online').fadeIn(anit);
 		$('#back').fadeIn(anit);
 		$('#back').attr('data-action', 'customgame,serverbrowser,vertical');
-		playersJoin(d.numPlayers, d.maxPlayers, 20, d.address);
+		playersJoin(d.numPlayers, d.maxPlayers, 20, d);
 		currentServer = d;
 		loopPlayers = false;
 		setTimeout(function() {
-			lobbyLoop(d.address);
+			lobbyLoop(d);
 			loopPlayers = true;
 		},3000);
 		$('#start').children('.label').text("JOIN GAME");
@@ -963,7 +963,7 @@ $(document).ready(function() {
 		if (mode[1] === "FORGE" || (mode[0] === "START" && mode[1] === "GAME"))
 			startgame("127.0.0.1:11775", mode, "");
 		else
-			startgame(currentServer.address, mode, "");
+			startgame(currentServer, mode, "");
 	});
 	Mousetrap.bind('enter up up down down left right left right b a enter', function() {
 		settings.background.current = 9001;
@@ -1123,13 +1123,13 @@ function lobbyLoop(ip) {
 				$(this).css("background-color", hexToRgb(bright, 0.75));
 			});
 		}
-		if (loopPlayers && currentServer.address == ip)
+		if (loopPlayers && currentServer == ip)
 			setTimeout(function() { lobbyLoop(ip); }, 3000);
 	});
 	setTimeout(function() {
 		if (!success) {
 			console.log("Failed to contact server, retrying.");
-			if (loopPlayers && currentServer.address == ip)
+			if (loopPlayers && currentServer == ip)
 				setTimeout(function() { lobbyLoop(ip); }, 3000);
 		}
 	}, 5000);
@@ -1267,7 +1267,7 @@ function joinServer(details) {
 		Menu.customgame.position = "top";
 		changeMenu("serverbrowser,customgame,vertical,serverbrowser");
 		$('#back').attr('data-action', 'customgame,serverbrowser,vertical');
-		playersJoin(d.players.current, d.players.max, 20, d.address);
+		playersJoin(d.players.current, d.players.max, 20, d);
 		currentServer = d;
 		lobbyLoop(servers[selectedserver]);
 		loopPlayers = true;
@@ -1422,7 +1422,7 @@ var KDdata = [{
 
 function playerInfo(name) {
 	if (name != "user") {
-		$.getJSON("http://" + servers[selectedserver].address, function(info) {
+		$.getJSON("http://" + servers[selectedserver], function(info) {
 			for (var i = 0; i < info.players.length; i++) {
 				if (info.players[i].name == name) {
 					KDchart.segments[0].value = info.players[i].deaths > 0 ? info.players[i].deaths : 1;
