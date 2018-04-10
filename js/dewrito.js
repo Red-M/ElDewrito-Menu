@@ -1162,23 +1162,24 @@ function totalPlayersLoop() {
     if (typeof servers != 'undefined') {
         for (var i = 0; i < servers.length; i++) {
             // if (!dewRconConnected) {
-                var startTime = Date.now(),
-                endTime,
-                ping;
-                (function(i) {
-                    $.ajax({
-                        type: "GET",
-                        url: "http://" + servers[i] + "/",
-                        async: true,
-                        success: function() {
-                            endTime = Date.now();
-                            ping = Math.round((endTime - startTime) * 0.45);
-                            servers[i].ping = ping;
-                            $('#ping-'+i).text(ping);
-                        }
-                    });
-                })(i);
-            }
+            var startTime = Date.now(),
+            endTime,
+            ping;
+            (function(i) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://" + servers[i] + "/",
+                    async: true,
+                    success: function() {
+                        endTime = Date.now();
+                        ping = Math.round((endTime - startTime) * 0.45);
+                        servers[i].ping = ping;
+                        $('#ping-'+i).text(ping);
+                    }
+                });
+            })(i);
+        }
+    }
 }
 
 function playersJoin(number, max, time, ip) {
