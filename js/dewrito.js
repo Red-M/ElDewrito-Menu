@@ -1269,7 +1269,7 @@ function joinServer(details) {
 		$('#back').attr('data-action', 'customgame,serverbrowser,vertical');
 		playersJoin(d.players.current, d.players.max, 20, d.address);
 		currentServer = d;
-		lobbyLoop(servers[selectedserver].address);
+		lobbyLoop(servers[selectedserver]);
 		loopPlayers = true;
 	} else {
 		dewAlert({
