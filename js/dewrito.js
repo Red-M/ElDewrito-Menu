@@ -1184,10 +1184,10 @@ function totalPlayersLoop() {
 					// serverz.servers[i].ping = dewRcon.lastMessage.split(' ')[2];
 			}
 		}*/
-		$('#players-online').text(serverz.count);
-		loadParty();
-		if (!friendServerConnected)
-			loadFriends();
+		// $('#players-online').text(serverz.count);
+		// loadParty();
+		// if (!friendServerConnected)
+			// loadFriends();
 	});
 }
 
