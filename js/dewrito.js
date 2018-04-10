@@ -184,8 +184,8 @@ function getMasterServers() {
 					checked++;
 					if (checked == masters) {
 						getServers(false);
-						getTotalPlayers();
-						totalPlayersLoop();
+						// getTotalPlayers();
+						// totalPlayersLoop();
 						getCurrentVersion();
 					}
 				}
