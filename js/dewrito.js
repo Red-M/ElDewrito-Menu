@@ -204,6 +204,9 @@ function getServers(browser) {
 	for (var i = 0; i < serverz.servers.length; i++) {
         $.getJSON('http://'+serverz.servers[i]+'/', function(data) {
             server_data = data;
+            if (typeof serverz.servers[i].ping != 'undefined') {
+                server_data.ping = serverz.servers[i].ping;
+            }
             queryServer(server_data, i, browser);
         });
 	}
@@ -1159,27 +1162,39 @@ var infoIP = "http://158.69.166.144:8081",
 	totallyLoopingPlayers = setInterval(totalPlayersLoop,10000);
 
 function totalPlayersLoop() {
-    if (typeof servers != 'undefined') {
-        for (var i = 0; i < servers.length; i++) {
-            // if (!dewRconConnected) {
-            var startTime = Date.now(),
-            endTime,
-            ping;
-            (function(i) {
-                $.ajax({
-                    type: "GET",
-                    url: "http://" + servers[i] + "/",
-                    async: true,
-                    success: function() {
-                        endTime = Date.now();
-                        ping = Math.round((endTime - startTime) * 0.45);
-                        servers[i].ping = ping;
-                        $('#ping-'+i).text(ping);
-                    }
-                });
-            })(i);
-        }
-    }
+ 	$.getJSON("http://eldewrito.red-m.net/list", function(data) {
+		serverz = data['result'];
+		for (var i = 0; i < serverz.servers.length; i++) {
+			// if (!dewRconConnected) {
+				var startTime = Date.now(),
+				endTime,
+				ping;
+				(function(i) {
+					$.ajax({
+						type: "GET",
+						url: "http://" + serverz.servers[i] + "/",
+						async: true,
+						success: function() {
+							endTime = Date.now();
+							ping = Math.round((endTime - startTime) * 0.45);
+							serverz.servers[i].ping = ping;
+							$('#ping-'+i).text(ping);
+						}
+					});
+				})(i);
+			}/* else {
+				dewRcon.send('Server.Ping "' + serverz.servers[i].address.split(':')[0] + '', function(res) {
+					console.log(res);
+				});
+					// console.log(i);
+					// serverz.servers[i].ping = dewRcon.lastMessage.split(' ')[2];
+			}
+		}*/
+		// $('#players-online').text(serverz.count);
+		// loadParty();
+		// if (!friendServerConnected)
+			// loadFriends();
+	});
 }
 
 function playersJoin(number, max, time, ip) {
