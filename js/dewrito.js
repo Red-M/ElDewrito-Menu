@@ -1658,9 +1658,9 @@ function filterServers() {
 			$(this).show();
 		}
 	});
-	if ($('#browser').is(':empty')){
-		$('#refresh').trigger('click');
-	}
+	// if ($('#browser').is(':empty')){
+		// $('#refresh').trigger('click');
+	// }
 }
 
 function clearFilters() {
