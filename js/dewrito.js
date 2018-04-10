@@ -173,9 +173,9 @@ function getMasterServers() {
 						checked++;
 						if (checked == masters) {
 							getServers(false);
-							getTotalPlayers();
-							totalPlayersLoop();
-							getCurrentVersion();
+							// getTotalPlayers();
+							// totalPlayersLoop();
+							// getCurrentVersion();
 						}
 					}
 				},
@@ -186,7 +186,7 @@ function getMasterServers() {
 						getServers(false);
 						// getTotalPlayers();
 						// totalPlayersLoop();
-						getCurrentVersion();
+						// getCurrentVersion();
 					}
 				}
 			});
