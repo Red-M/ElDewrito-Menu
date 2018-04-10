@@ -1050,7 +1050,7 @@ function loadServers() {
 			$('#refresh img').removeClass('rotating');
 		}, 4000);
 		$('#browser').empty();
-		// getServers(true);
+		getServers(true);
 		$('.server').hover(function() {
 			$('#click')[0].currentTime = 0;
 			$('#click')[0].play();
